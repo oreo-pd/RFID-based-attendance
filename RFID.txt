@@ -1,0 +1,69 @@
+MICROPROCESSORS AND MICROCONTROLLERS 
+ 
+ 
+11 
+ 
+    Serial.println(); 
+    if (nuidPICC[0]==137 && nuidPICC[1]==43&& nuidPICC[2]==174 && 
+nuidPICC[3]==17)  
+    { 
+     display.display(); 
+  delay(500); 
+  display.setTextColor(WHITE); 
+  display.setTextSize(1); 
+  display.setCursor(0,20); 
+  display.print("Time:"); 
+  display.print(str);  
+    } 
+  else{ 
+  
+    Serial.println("RFID MISMATCH!"); 
+  } 
+     
+  } 
+  else 
+  { 
+    Serial.println(F("Card read previously.")); 
+    display.print(F("Card read previously.")); 
+  } 
+  
+  // Halt PICC 
+  rfid.PICC_HaltA(); 
+  
+  // Stop encryption on PCD 
+  rfid.PCD_StopCrypto1(); 
+ 
+ 
+  //******OLED************************** 
+ 
+  /* display.display(); 
+  delay(500);cvcvvvvvvvvvvvcvcvcvv 
+  display.print(str);  */ 
+     
+  //****************************** 
+ // Serial.println(str); //print the string to the serial port 
+ // display.println(str); 
+  //delay(500); //20 seconds delay 
+} 
+ 
+void printHex(byte *buffer, byte bufferSize) { 
+  for (byte i = 0; i < bufferSize; i++) { 
+    Serial.print(buffer[i] < 0x10 ? " 0" : " "); 
+    Serial.print(buffer[i], HEX); 
+  } 
+} 
+  
+MICROPROCESSORS AND MICROCONTROLLERS 
+ 
+ 
+12 
+ 
+/** 
+ * Helper routine to dump a byte array as dec values to Serial. 
+ */ 
+void printDec(byte *buffer, byte bufferSize) { 
+  for (byte i = 0; i < bufferSize; i++) { 
+    Serial.print(buffer[i] < 0x10 ? " 0" : " "); 
+    Serial.print(buffer[i], DEC); 
+}
+}
